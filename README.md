@@ -2,11 +2,13 @@
 A simple namespace function for JavaScript.
 
 ### Background
-To organise code into logical groups, programming languages such as Java and C# have the concept of a 'namespace'. In the .NET Framework, type HttpContext logically lives inside the System.Web namespace.
+To organise code into logical groups, programming languages such as Java and C#
+have the concept of a `namespace`.
 
-JavaScript does not have thies concept of namespaces - but similar functionality can be created. Namespace.js does just that.
+JavaScript does not have the concept of namespaces - but similar functionality
+can be created. Namespace.js does just that.
 
-### Usage
+### Usage (browser)
 1) Include namespace.js in your HTML:
 
 ```html
@@ -35,3 +37,8 @@ Animal.Mammal.Feline.Cat.speak(); // returns 'Meow!'
 var cat = Animal.Mammal.Feline.Cat;
 cat.speak(); // returns 'Meow!'
 ```
+
+### Usage (Node.js)
+
+Currently this will not work in Node.js because `window` is referenced in both the source
+and the spec files. I am sure this is trivial to fix, but I have not gotten round to it yet.
