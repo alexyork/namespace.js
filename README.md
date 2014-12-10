@@ -4,7 +4,7 @@ A simple namespace function for JavaScript.
 ### Background
 To organise code into logical groups, programming languages such as Java and C# have the concept of a `namespace`.
 
-JavaScript does not have the concept of namespaces - but similar functionality can be created. `namespace.js` does just that.
+JavaScript does not have the concept of namespaces - but similar functionality can be created. Namespace.js does just that.
 
 ### Why?
 A JavaScript developer may discover that things can be removed from the global scope by clever usage of self-executing functions:
@@ -45,7 +45,7 @@ Animals.Mammal.Feline = window.Animals.Mammal.Feline || {};
 })(Animals.Mammal.Feline);
 ```
 
-`namespace.js` aims to clean up the process of defining the custom namespace:
+Namespace.js aims to clean up the process of defining the custom namespace:
 
 ```javascript
 namespace('Animals.Mammal.Feline');
@@ -56,7 +56,7 @@ namespace('Animals.Mammal.Feline');
 ```
 
 ### Usage (browser)
-1) Include `namespace.js` in your HTML:
+1) Include namespace.js in your HTML:
 
 ```html
 <script src="namespace.js"></script>
@@ -86,10 +86,10 @@ cat.speak(); // returns 'Meow!'
 ```
 
 ### Modules? Self-executing functions?
-`namespace.js` does not care what you do with the namespace. It doesn't matter if you use a fancy JavaScript module pattern, or wrap all or none of your code in a self-executing function.
+Namespace.js does not care what you do with the namespace. It doesn't matter if you use a fancy JavaScript module pattern, or wrap all or none of your code in a self-executing function.
 
-All `namespace.js` does is create the namespace in a readable and concise manner.
+All namespace.js does is create the namespace in a readable and concise manner.
 
 ### Usage (Node.js)
 
-Currently `namespace.js` will not work in `node.js` because `window` is referenced in both the source and the spec files. I am sure this is trivial to fix, but I have not gotten round to it yet since I made this and used it within the context of a browser, not a Node app.
+Currently, namespace.js will not work in Node because `window` is referenced in both the source and the spec files. I am sure this is trivial to fix, but I have not gotten round to it yet since I made this and used it within the context of a browser, not a Node app.
