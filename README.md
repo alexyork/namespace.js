@@ -7,52 +7,50 @@ To organise code into logical groups, programming languages such as Java and C# 
 JavaScript does not have the concept of namespaces - but similar functionality can be created. Namespace.js does just that.
 
 ### Why?
-A JavaScript developer may discover that things can be removed from the global scope by clever usage of self-executing functions:
+In some of JavaScript's module patterns, it is often recommended to organise these modules into some kind of a custom namespace to reduce global clutter:
 
 ```javascript
-var inTheGlobalScope = "bad";
+// Create a namespace called 'Animal'
+var Animal = window.Animal || {};
 
-(function() {
-    var notInTheGlobalScope = "good";
-})();
-```
+Animal.Cat = {
+    speak: function() {
+    	return 'Meow!';
+    }
+};
 
-The same JavaScript developer may then discover some JavaScript module patterns, and want to organise these modules in some kind of a custom namespace:
-
-```javascript
-var Animals = window.Animals || {};
-
-(function(ns) {
-    ns.Cat = {
-        speak: function() {
-			return "Meow!";
-		}
-    };
-}(Animals));
-
-Animals.Cat.speak(); // returns "Meow!"
+Animal.Cat.speak(); // "Meow!"
 ```
 
 For longer namespaces, the code for creating the custom namespace can quickly become ugly and unwieldy:
 
 ```javascript
-var Animals = window.Animals || {};
-Animals.Mammal = window.Animals.Mammal || {};
-Animals.Mammal.Feline = window.Animals.Mammal.Feline || {};
+// Create a namespace called 'Animal.Mammal.Feline'
+var Animal = window.Animal || {};
+Animal.Mammal = window.Animal.Mammal || {};
+Animal.Mammal.Feline = window.Animal.Mammal.Feline || {};
 
-(function(ns) {
-    // Same as before
-})(Animals.Mammal.Feline);
+Animal.Mammal.Feline.Cat = {
+    speak: function() {
+    	return 'Meow!';
+    }
+};
+
+Animal.Mammal.Feline.Cat.speak(); // "Meow!"
 ```
 
-Namespace.js aims to clean up the process of defining the custom namespace:
+In the snippet above, the top 3 lines of code are ugly and repetative. Namespace.js aims to clean up the process of defining the custom namespace:
 
 ```javascript
-namespace('Animals.Mammal.Feline');
+namespace('Animal.Mammal.Feline');
 
-(function(ns) {
-    // Same as before
-}(Animals.Mammal.Feline));
+Animal.Mammal.Feline.Cat = {
+    speak: function() {
+    	return 'Meow!';
+    }
+};
+
+Animal.Mammal.Feline.Cat.speak(); // "Meow!"
 ```
 
 ### Usage (browser)
